@@ -55,3 +55,6 @@ body, #root{
 input.ui-input{
   @apply border-gray-800 bg-gray-800 text-gray-100 outline-none p-2 rounded-md;
 }
+#chat-input textarea{
+  field-sizing: normal;
+}
