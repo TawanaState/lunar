@@ -6,7 +6,7 @@ import rehypeHighlight from "rehype-highlight"; // Syntax highlighting
 import "./../assets/katex/katex.min.css"; // Styles for LaTeX
 import "./../assets/highlight.js/styles/github-dark.min.css";
 
-const MarkdownRenderer = ({ content }: { content: string }) => {
+const MarkdownRenderer = ({ content }: { content: string | undefined }) => {
   return (
     <ReactMarkdown
       children={content}

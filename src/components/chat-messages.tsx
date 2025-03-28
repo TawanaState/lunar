@@ -1,19 +1,79 @@
 import React from "react";
 import MarkdownRenderer from "./markdown-renderer";
+import { chat as LLMChat, ChatTurn, DEFAULT_MODEL } from "../utils/utils";
+import { MessagesContext } from "../utils/contexts"
+import { ChatResponse } from "ollama";
 
-export default function ChatMessages(props:any){
+export default function ChatMessages(){
 
-    return <div className="messages">
+    const context = React.useContext(MessagesContext);
+    const messages = context ? context[0] : [];
+
+    return <div className="messages py-12">
         {
-            props.messages.map((v:any, k:number) => {
-                return <Message key={k+"--message"} content={v.content}/>
+            messages && messages.map((v:ChatTurn) => {
+                return <Message key={v.id+"--message"} value={v}/>
             })
         }
     </div>
 }
 
-function Message(props:any) {
-    return <article className="w-[70%]">
-        <MarkdownRenderer content={props.content} />
+function Message(props:{
+    value:ChatTurn;
+}) {
+
+    const hasRun = React.useRef(false);
+
+    // Accessing context
+    const context = React.useContext(MessagesContext);
+    const messages = context ? context[0] : [];
+    const setMessages = context ? context[1] : () => {};
+
+    const [modelOutput, setModelOutput] = React.useState("");
+
+    const updateMessage = (message:ChatTurn) => {
+        setMessages((prev : ChatTurn[]) => {
+            return prev && prev.map((v:ChatTurn) => {
+                return v.id == message.id ? message : v; // 
+            })
+        });
+    }
+
+    React.useEffect(() => {
+        if (hasRun.current) return;
+        hasRun.current = true;
+
+        if (props.value.system) {
+            setModelOutput(props.value.system.content);
+        }else{
+            LLMChat(
+                messages,
+                DEFAULT_MODEL,
+                (response:ChatResponse) => {
+                    //console.log(response, "--gen");
+                    setModelOutput((prev:string) => {
+                        if (response.done) {
+                            updateMessage({
+                                ...props.value,
+                                system : {
+                                    ...response.message,
+                                    content : prev + response.message.content
+                                }
+                            })// Updating message if it is done generating!
+                        }
+                        return prev + response.message.content;// Appending the new stream
+                    });
+                }
+            );
+        }
+    }, []);
+
+    return <>
+    <article className="max-w-[70%] w-fit prose prose-invert place-self-end bg-muted py-2 px-3 rounded-md my-4 mt-8">
+        <MarkdownRenderer content={props.value.user?.content} />
     </article>
+    <article className="w-full prose prose-invert my-4">
+        <MarkdownRenderer content={modelOutput} />
+    </article>
+    </>
 }

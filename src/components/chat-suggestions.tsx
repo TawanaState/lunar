@@ -15,9 +15,9 @@ type ChatSuggestionProps = {
     prompt:string;
 }
 function ChatSuggestion(props:ChatSuggestionProps){
-    return <div className="flex flex-col gap-1 p-6 bg-muted rounded-md cursor-pointer">
-        <span className="mso !text-4xl">{props.icon}</span>
+    return <div className="flex flex-col gap-0.5 p-4 bg-muted rounded-md cursor-pointer">
+        <span className="mso !text-2xl">{props.icon}</span>
         <span className="font-bold">{props.title}</span>
-        <span className="text-muted text-sm">{props.description}</span>
+        <span className="text-muted text-xs">{props.description}</span>
     </div>;
 }

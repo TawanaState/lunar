@@ -39,10 +39,19 @@
 }
 
 body, #root{
-  @apply bg-gray-900 text-gray-100 w-[100vw] h-[100vh];
+  @apply bg-gray-900 text-gray-100 w-[100vw] min-h-[100vh] h-fit overflow-x-hidden;
 }
 #root{
-  @apply flex flex-col items-center gap-2 justify-center;
+  @apply flex flex-col items-center gap-2 justify-center px-[15vw];
+}
+#root:has(form[data-chat-mode="true"]){
+  @apply block;
+}
+#root:has(form[data-chat-mode="true"]) > *{
+  @apply w-full;
+}
+#root:has(form[data-chat-mode="true"]) > form{
+  @apply w-[70%] bottom-0 fixed place-self-center;
 }
 
 /* UTILS */
@@ -57,4 +66,15 @@ input.ui-input{
 }
 #chat-input textarea{
   field-sizing: normal;
+}
+form #input-el:empty::after{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  display: block;
+  content: "Type here...";
+  opacity: .5;
+}
+article > p{
+  text-align: justify;
 }
