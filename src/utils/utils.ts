@@ -1,12 +1,13 @@
 import { ChatResponse, Message } from 'ollama';
 import ollama from 'ollama/browser';
 
-export const DEFAULT_MODEL = "phi4-mini:latest";
+export const DEFAULT_MODEL = "deepseek-r1:1.5b";
 export const STREAM_MODEL = true;
 export type ChatTurn = {
     id?:string;
     user?:Message;
     system?:Message;
+    visible?:Boolean;
 }
 
 /* messages format : 
@@ -29,14 +30,14 @@ export function formatMessages(mylist:ChatTurn[]) : Message[]{
 }
 
 export async function chat(messages:ChatTurn[], model:string, ongenerated:(response:ChatResponse)=>void){
-    console.log((await ollama.list()).models)
+    //console.log((await ollama.list()).models)
     const response = await ollama.chat({ model: model, messages: formatMessages(messages), stream: STREAM_MODEL })
     if (!STREAM_MODEL) {
         return response;
     }else{
         for await (const part of response) {
             ongenerated(part);
-            console.log(part, "--generated---");
+            //console.log(part, "--generated---");
         }
         return true;
     }

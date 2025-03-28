@@ -1,7 +1,7 @@
 import React from "react";
 import MarkdownRenderer from "./markdown-renderer";
-import { chat as LLMChat, ChatTurn, DEFAULT_MODEL } from "../utils/utils";
-import { MessagesContext } from "../utils/contexts"
+import { chat as LLMChat, ChatTurn } from "../utils/utils";
+import { MessagesContext, ModelContext, LoadingContext } from "../utils/contexts";
 import { ChatResponse } from "ollama";
 
 export default function ChatMessages(){
@@ -9,10 +9,10 @@ export default function ChatMessages(){
     const context = React.useContext(MessagesContext);
     const messages = context ? context[0] : [];
 
-    return <div className="messages py-12">
+    return <div className="messages py-12 [overflow-anchor:auto]">
         {
             messages && messages.map((v:ChatTurn) => {
-                return <Message key={v.id+"--message"} value={v}/>
+                return v.visible ? <Message key={v.id+"--message"} value={v}/> : <></>
             })
         }
     </div>
@@ -31,10 +31,16 @@ function Message(props:{
 
     const [modelOutput, setModelOutput] = React.useState("");
 
+    const model_context = React.useContext(ModelContext);
+    const LANGUAGE_MODEL = model_context ? model_context[0] : "";
+
+    const loading_context = React.useContext(LoadingContext);
+    const setLoading = loading_context ? loading_context[1] : () => {};
+
     const updateMessage = (message:ChatTurn) => {
         setMessages((prev : ChatTurn[]) => {
             return prev && prev.map((v:ChatTurn) => {
-                return v.id == message.id ? message : v; // 
+                return v.id == message.id ? message : v;
             })
         });
     }
@@ -48,7 +54,7 @@ function Message(props:{
         }else{
             LLMChat(
                 messages,
-                DEFAULT_MODEL,
+                LANGUAGE_MODEL,
                 (response:ChatResponse) => {
                     //console.log(response, "--gen");
                     setModelOutput((prev:string) => {
@@ -61,6 +67,7 @@ function Message(props:{
                                 }
                             })// Updating message if it is done generating!
                         }
+                        setLoading(!response.done);
                         return prev + response.message.content;// Appending the new stream
                     });
                 }
@@ -69,7 +76,7 @@ function Message(props:{
     }, []);
 
     return <>
-    <article className="max-w-[70%] w-fit prose prose-invert place-self-end bg-muted py-2 px-3 rounded-md my-4 mt-8">
+    <article className="md:max-w-[70%] max-w-[90%] w-fit prose prose-invert place-self-end bg-muted py-2 px-3 rounded-md my-4 mt-8">
         <MarkdownRenderer content={props.value.user?.content} />
     </article>
     <article className="w-full prose prose-invert my-4">

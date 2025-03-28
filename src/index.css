@@ -27,6 +27,7 @@
   font-family: "Space Mono", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  overflow-anchor: auto;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -37,21 +38,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+*{
+  overflow-anchor: auto;
+}
 
 body, #root{
-  @apply bg-gray-900 text-gray-100 w-[100vw] min-h-[100vh] h-fit overflow-x-hidden;
+  @apply bg-gray-900 text-gray-100 w-[100vw] min-h-[100vh] h-fit overflow-x-hidden [overflow-anchor:auto];
 }
 #root{
-  @apply flex flex-col items-center gap-2 justify-center px-[15vw];
+  @apply flex flex-col items-center gap-2 justify-center px-6 md:px-[15vw] lg:px-[20vw];
 }
-#root:has(form[data-chat-mode="true"]){
-  @apply block;
-}
-#root:has(form[data-chat-mode="true"]) > *{
+#root:has(form[data-chat-mode="true"]) > *:not(form){
   @apply w-full;
 }
-#root:has(form[data-chat-mode="true"]) > form{
-  @apply w-[70%] bottom-0 fixed place-self-center;
+#root > form{
+  @apply w-[95%] md:w-[70%] lg:w-[50%] bottom-[10px] fixed place-self-center;
 }
 
 /* UTILS */
