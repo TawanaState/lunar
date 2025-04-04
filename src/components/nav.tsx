@@ -37,8 +37,8 @@ export function ModelSelect() {
 
     return <select defaultValue={LANGUAGE_MODEL} onChange={selectOnChange} className="p-2 bg-transparent text-white outline-none marker:hidden">
         {
-            models.map((val:ModelResponse) => {
-                return <option selected={LANGUAGE_MODEL == val.name} className="bg-muted" value={val.name}>{
+            models.map((val:ModelResponse, k:number) => {
+                return <option selected={LANGUAGE_MODEL == val.name} className="bg-muted" key={k + "--model-option"} value={val.name}>{
                     `${val.name} (${val.details.parameter_size})`
                 }</option>
             })
