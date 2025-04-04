@@ -1,7 +1,7 @@
 import { ChatResponse, Message } from 'ollama';
 import ollama from 'ollama/browser';
 
-export const DEFAULT_MODEL = "deepseek-r1:1.5b";
+export const DEFAULT_MODEL = "gemma3:1b";
 export const STREAM_MODEL = true;
 export type ChatTurn = {
     id?:string;
