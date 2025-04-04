@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",
+    "dexie": "^4.0.11",
+    "dexie-react-hooks": "^1.1.7",
     "ollama": "^0.5.14",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
