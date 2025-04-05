@@ -3,6 +3,7 @@ import MarkdownRenderer from "./markdown-renderer";
 import { chat as LLMChat, ChatTurn } from "../utils/utils";
 import { MessagesContext, ModelContext, LoadingContext } from "../utils/contexts";
 import { ChatResponse } from "ollama";
+import { db } from "../utils/db";
 
 export default function ChatMessages(){
 
@@ -39,9 +40,15 @@ function Message(props:{
 
     const updateMessage = (message:ChatTurn) => {
         setMessages((prev : ChatTurn[]) => {
-            return prev && prev.map((v:ChatTurn) => {
+
+            let returnval = prev && prev.map((v:ChatTurn) => {
                 return v.id == message.id ? message : v;
             })
+            // 
+            if (window.chatid !== undefined) {
+                db.chats.update(window.chatid, {messages:returnval});
+            }
+            return returnval;
         });
     }
 
