@@ -3,11 +3,22 @@ import { ListResponse } from "ollama";
 import ollama from "ollama/browser";
 import React from "react";
 import { ModelContext } from "../utils/contexts";
+import { db } from "../utils/db";
+import { History } from "./history";
 
 
 export function Nav() {
+    const hasRun = React.useRef(false);
+
+    React.useEffect(() => {
+        if (hasRun.current) return;
+        hasRun.current = true;
+    }, [])
+
     return <nav className="flex flex-row justify-between items-center fixed top-0 py-2 px-12 w-full border-b border-b-gray-800 border-solid backdrop-blur-3xl">
         <div className="flex flex-row gap-8 items-center">
+            <a href="#history-panel" className="mso">history</a>
+            <History />
             <a href="/" className="mso">add</a>
         </div>
         <ModelSelect />
@@ -38,7 +49,7 @@ export function ModelSelect() {
     return <select defaultValue={LANGUAGE_MODEL} onChange={selectOnChange} className="p-2 bg-transparent text-white outline-none marker:hidden">
         {
             models.map((val:ModelResponse, k:number) => {
-                return <option selected={LANGUAGE_MODEL == val.name} className="bg-muted" key={k + "--model-option"} value={val.name}>{
+                return <option selected={val.name == LANGUAGE_MODEL} className="bg-muted" key={k + "--model-option"} value={val.name}>{
                     `${val.name} (${val.details.parameter_size})`
                 }</option>
             })

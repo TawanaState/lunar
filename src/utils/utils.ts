@@ -44,6 +44,16 @@ export async function chat(messages:ChatTurn[], model:string, ongenerated:(respo
     
 }
 
+export async function genTitle(message:string) {
+    const response = await ollama.chat({ model: DEFAULT_MODEL, messages: [
+        {
+            content : "Generate a suitable short title for a chat that starts with the following input message from the user. Be straight, just suggest 1 good title, just write out the title no extra detail. Your exact output is going to be used as the title.  The User Input: " + message,
+            role : "user",
+        }
+    ], stream: false });
+    return response;
+}
+
 export function genRandomID(length:number){
     let result = "";
     let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

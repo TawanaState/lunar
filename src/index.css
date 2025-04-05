@@ -79,3 +79,34 @@ form #input-el:empty::after{
 article > p{
   text-align: justify;
 }
+
+input#history-menu-bar{
+  @apply mso appearance-none;
+}
+input#history-menu-bar::before{
+  @apply mso;
+  content: "history";
+}
+input#history-menu-bar:checked:before{
+  content: "close";
+}
+.transform-center{
+  position: absolute;
+  top: 50dvh;
+  left: 50vw;
+  transform: translate(-50vw, -50vh);
+}
+#history-panel{
+  animation: slide-in-left .5s ease-in-out 0ms 1;
+  transform: translateX(0px);
+}
+@keyframes slide-in-left {
+  from{
+    transform:translateX(-50vw);
+    opacity: 0;
+  }
+  to{
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
