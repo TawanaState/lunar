@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { ChatTurn, DEFAULT_MODEL } from './utils/utils'
 import { LoadingContext, MessagesContext, ModelContext } from './utils/contexts'
 import { Nav } from './components/nav'
+import VoiceModeUI from './components/voice-mode'
 
 
 function App() {
@@ -23,10 +24,12 @@ function App() {
 
       {
         messages.length === 0 ? <><NewChatHeader />
-        <ChatSuggestions /></> : <Nav />
+        <ChatSuggestions /></> : <></>
       }
+      <Nav />
       <ChatMessages />
       <ChatInput />
+      {/* <VoiceModeUI /> */}
       
       </LoadingContext.Provider>
       </ModelContext.Provider>
