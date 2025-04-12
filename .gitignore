@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+src/assets/highlight.js/*
+src/assets/katex/*
 
 # Editor directories and files
 .vscode/*
