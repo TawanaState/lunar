@@ -1,5 +1,4 @@
-<!-- Place app-icon.png here using markdown syntax -->
-![Lunar Icon](./app-icon.png)
+<img src="./app-icon.png" alt="Lunar Icon" style="width: 100px; height: 100px;"/>
 
 # Lunar: Your AI Desktop Companion 🚀
 
@@ -15,22 +14,22 @@ Lunar is designed to be your personal AI companion, with Ollama models acting as
 
 ## Key Features
 
-*   **Intuitive Interface:** A user-friendly design for effortless interaction with AI models. 🖱️
-*   **Offline Functionality:** Lunar operates entirely offline, ensuring your data stays private and secure. 🔒
-*   **Ollama Integration:** Seamlessly integrates with Ollama to run AI models locally. 🤝
+* **Intuitive Interface:** A user-friendly design for effortless interaction with AI models. 🖱️
+* **Offline Functionality:** Lunar operates entirely offline, ensuring your data stays private and secure. 🔒
+* **Ollama Integration:** Seamlessly integrates with Ollama to run AI models locally. 🤝
 
 ## Tech Stack
 
-*   **React:** A JavaScript library for building user interfaces. ⚛️
-*   **TypeScript:** A superset of JavaScript that adds static typing. ⌨️
-*   **Vite:** A build tool that provides a fast and efficient development experience. ⚡
-*   **Tauri:** A framework for building desktop applications using web technologies. 🖥️
+* **React:** A JavaScript library for building user interfaces. ⚛️
+* **TypeScript:** A superset of JavaScript that adds static typing. ⌨️
+* **Vite:** A build tool that provides a fast and efficient development experience. ⚡
+* **Tauri:** A framework for building desktop applications using web technologies. 🖥️
 
 ## Prerequisites
 
 Before using Lunar, ensure you have the following installed:
 
-*   **Ollama:** Lunar relies on Ollama to run AI models. Download and install it from [https://ollama.com/](https://ollama.com/). 🐳
+* **Ollama:** Lunar relies on Ollama to run AI models. Download and install it from [https://ollama.com/](https://ollama.com/). 🐳
 
 ## Installation and Usage
 
@@ -40,23 +39,26 @@ Download the latest pre-built releases for your operating system from [insert li
 
 ### Building from Source
 
-1.  Clone the repository:
+1. Clone the repository:
 
     ```bash
-    git clone [repository URL]
+    git clone https://github.com/TawanaState/lunar
     cd lunar
     ```
-2.  Install dependencies:
+
+2. Install dependencies:
 
     ```bash
     npm install
     ```
-3.  Run the app in development mode:
+
+3. Run the app in development mode:
 
     ```bash
     npm run tauri dev
     ```
-4.  Build the app for production:
+
+4. Build the app for production:
 
     ```bash
     npm run tauri build
@@ -79,6 +81,7 @@ These models will then be available within the Lunar interface. 🚀
 **Future Feature** : In future versions, you'll be able to pull models directly from within the Lunar app! 🤩
 
 ## Contributing
+
 Lunar is an open-source project, and contributions are welcome! 🎉 If you'd like to contribute, please follow these steps:
 
 1. Fork the repository.
@@ -87,4 +90,5 @@ Lunar is an open-source project, and contributions are welcome! 🎉 If you'd li
 4. Submit a pull request.
 
 ## License
+
 Lunar is released under the MIT License. 📜
