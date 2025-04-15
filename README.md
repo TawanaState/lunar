@@ -1,58 +1,90 @@
-# React + TypeScript + Vite
+<!-- Place app-icon.png here using markdown syntax -->
+![Lunar Icon](./app-icon.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Lunar: Your AI Desktop Companion 🚀
 
-Currently, two official plugins are available:
+Lunar is your personal AI assistant, designed to bring the power of AI models right to your desktop. 🤖 It provides a seamless and intuitive interface for interacting with AI, making it easier than ever to harness their capabilities.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Created by:** Tawananyasha Mukoriwo, Software Engineer
 
-## Expanding the ESLint configuration
+**Fun Fact:** Lunar is named after my first AI assistant project, built when I was just 17! This is Lunar 2.0, a complete reimagining with a focus on simplicity and user experience. ✨
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Concept
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Lunar is designed to be your personal AI companion, with Ollama models acting as the engine. 🧠 It provides a user-friendly interface to interact with these models, abstracting away the complexities of running AI locally.
+
+## Key Features
+
+*   **Intuitive Interface:** A user-friendly design for effortless interaction with AI models. 🖱️
+*   **Offline Functionality:** Lunar operates entirely offline, ensuring your data stays private and secure. 🔒
+*   **Ollama Integration:** Seamlessly integrates with Ollama to run AI models locally. 🤝
+
+## Tech Stack
+
+*   **React:** A JavaScript library for building user interfaces. ⚛️
+*   **TypeScript:** A superset of JavaScript that adds static typing. ⌨️
+*   **Vite:** A build tool that provides a fast and efficient development experience. ⚡
+*   **Tauri:** A framework for building desktop applications using web technologies. 🖥️
+
+## Prerequisites
+
+Before using Lunar, ensure you have the following installed:
+
+*   **Ollama:** Lunar relies on Ollama to run AI models. Download and install it from [https://ollama.com/](https://ollama.com/). 🐳
+
+## Installation and Usage
+
+### Releases
+
+Download the latest pre-built releases for your operating system from [insert link to releases here].
+
+### Building from Source
+
+1.  Clone the repository:
+
+    ```bash
+    git clone [repository URL]
+    cd lunar
+    ```
+2.  Install dependencies:
+
+    ```bash
+    npm install
+    ```
+3.  Run the app in development mode:
+
+    ```bash
+    npm run tauri dev
+    ```
+4.  Build the app for production:
+
+    ```bash
+    npm run tauri build
+    ```
+
+    The built application will be available in the `src-tauri/target/release/bundle` directory.
+
+## Using Models
+
+Lunar automatically detects models pulled by Ollama([https://ollama.com/library/](https://ollama.com/library/)). To get started, pull models like `gemma`, `phi`, or `deepseek` using Ollama:
+
+```bash
+ollama pull gemma3:1b
+ollama pull phi4-mini
+ollama pull deepseek-r1:1.5b
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+These models will then be available within the Lunar interface. 🚀
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**Future Feature** : In future versions, you'll be able to pull models directly from within the Lunar app! 🤩
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Contributing
+Lunar is an open-source project, and contributions are welcome! 🎉 If you'd like to contribute, please follow these steps:
 
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with descriptive messages.
+4. Submit a pull request.
 
-
-- Last seen doing chet messages
+## License
+Lunar is released under the MIT License. 📜
