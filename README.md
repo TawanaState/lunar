@@ -37,7 +37,7 @@ Before using Lunar, ensure you have the following installed:
 
 ### Releases
 
-Download the latest pre-built releases for your operating system from [insert link to releases here].
+Download the latest pre-built releases for your operating system from [https://github.com/TawanaState/lunar/releases/tag/windows-setup].
 
 ### Building from Source
 
