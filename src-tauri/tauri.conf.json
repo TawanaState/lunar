@@ -4,7 +4,6 @@
   "version": "0.1.0",
   "identifier": "com.example.tauri",
   "build": {
-    "distDir": "../dist",
     "frontendDist": "../dist",
     "devUrl": "http://localhost:3030",
     "beforeDevCommand": "npm run dev",
