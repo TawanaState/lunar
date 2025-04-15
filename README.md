@@ -1,4 +1,6 @@
+<p align="center">
 <img src="./app-icon.png" alt="Lunar Icon" style="width: 100px; height: 100px;"/>
+</p>
 
 # Lunar: Your AI Desktop Companion 🚀
 
