@@ -4,6 +4,7 @@ import ollama from "ollama/browser";
 import React from "react";
 import { ModelContext } from "../utils/contexts";
 import { db } from "../utils/db";
+import  ModelPuller from "./pull-model";
 import { History } from "./history";
 
 
@@ -23,7 +24,7 @@ export function Nav() {
         </div>
         <ModelSelect />
         <div className="gap-8 flex flex-row items-center">
-            <button className="mso">settings</button>
+            <ModelPuller />
         </div>
     </nav>
 }

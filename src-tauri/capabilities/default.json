@@ -6,6 +6,45 @@
     "main"
   ],
   "permissions": [
-    "core:default"
+    "core:default",
+    {
+      "identifier": "opener:allow-open-path",
+      "allow": [
+        {
+          "path": "$APPLOCALDATA/*"
+        }
+      ]
+    },
+    {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        {
+          "name": "ollama-pull-cmd",
+          "cmd": "cmd.exe",
+          "args": true
+        }
+      ]
+    },
+    "fs:default",
+    {
+      "identifier": "fs:allow-write-text-file",
+      "allow": [
+        {
+          "path": "$APPLOCALDATA/*"
+        }
+      ]
+    },
+    "fs:allow-read-file",
+    {
+      "identifier": "fs:allow-create",
+      "allow": [
+        {
+          "path": "$APPLOCALDATA/*"
+        }
+      ]
+    },
+    "fs:allow-mkdir",
+    "fs:allow-write",
+    "opener:default"
   ]
 }
